@@ -31,6 +31,7 @@ class MODULE_4RELAY {
     bool readBytes(uint8_t addr, uint8_t reg, uint8_t *buffer, uint8_t length);
 
    public:
+    bool use_wire(TwoWire *wire, uint8_t addr = MODULE_4RELAY_ADDR);
     bool begin(TwoWire *wire = &Wire, uint8_t addr = MODULE_4RELAY_ADDR,
                uint8_t sda = 21, uint8_t scl = 22, uint32_t speed = 200000L);
     bool setRelay(uint8_t index, bool state);

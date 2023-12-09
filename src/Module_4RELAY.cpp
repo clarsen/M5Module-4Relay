@@ -18,6 +18,18 @@ bool MODULE_4RELAY::begin(TwoWire *wire, uint8_t addr, uint8_t sda, uint8_t scl,
     }
 }
 
+bool MODULE_4RELAY::use_wire(TwoWire *wire, uint8_t addr) {
+    _wire = wire;
+    _addr = addr;
+    _wire->beginTransmission(_addr);
+    uint8_t error = _wire->endTransmission();
+    if (error == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /*! @brief Write a certain length of data to the specified register address.
     @return True if the write was successful, otherwise false.. */
 bool MODULE_4RELAY::writeBytes(uint8_t addr, uint8_t reg, uint8_t *buffer,
